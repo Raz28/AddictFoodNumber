@@ -112,8 +112,6 @@ public class ListAddictFragment extends Fragment {
             mTextViewName = itemView.findViewById(R.id.textViewDeclaratiom);
         }
 
-        public void Bind() {
 
-        }
     }
 }
