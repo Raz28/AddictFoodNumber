@@ -1,9 +1,5 @@
 package com.gsv28rus.android.addictfoodnumber.database;
 
-/**
- * Created by Stepan on 28.11.2017.
- */
-
 public class SafeFoodDbSchema {
 
     public static final class NumbersTable {

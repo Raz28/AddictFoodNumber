@@ -1,12 +1,30 @@
 package com.gsv28rus.android.addictfoodnumber;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 
 
 public class AddictList {
     private ArrayList<Addict> mAddictArrayList = new ArrayList<>();
+    private static AddictList sAddictList;
+
+    private AddictList() {
+        mAddictArrayList.add(e100);
+        mAddictArrayList.add(e101);
+        mAddictArrayList.add(e102);
+        mAddictArrayList.add(e103);
+        mAddictArrayList.add(e104);
+        mAddictArrayList.add(e100);
+        mAddictArrayList.add(e101);
+        mAddictArrayList.add(e102);
+        mAddictArrayList.add(e103);
+        mAddictArrayList.add(e104);
+    }
+
+    public static AddictList getAddictList() {
+        if (sAddictList == null) sAddictList = new AddictList();
+        return sAddictList;
+    }
+
 
     String E100_name = "Куркумины";
     String E100_general = "Куркумины (пищевая добавка Е100) — ярко-желтые натуральные красители, получаемые из растения куркумы (Curcuma longa). По своей химической природе, куркумины — это полифенолы, которые легко растворяются в спирте и эфире, но совершенно нерастворимы в воде. В щелочном растворе добавка Е100 приобретает буро-красный цвет, в минеральных кислотах краситель Е100 цвет не изменяет. Структура куркумина была определена в 1910 году. Химическая формула куркумина (красителя Е100): C21H20O6.";
@@ -39,18 +57,6 @@ public class AddictList {
     Addict e103 = new Addict(3, "E103", E103_name, E103_general, E103_benefit, E103_harm, 2, 1);
     Addict e104 = new Addict(4, "E104", E104_name, E104_general, E104_benefit, E104_harm, 2, 1);
 
-    public AddictList() {
-        mAddictArrayList.add(e100);
-        mAddictArrayList.add(e101);
-        mAddictArrayList.add(e102);
-        mAddictArrayList.add(e103);
-        mAddictArrayList.add(e104);
-        mAddictArrayList.add(e100);
-        mAddictArrayList.add(e101);
-        mAddictArrayList.add(e102);
-        mAddictArrayList.add(e103);
-        mAddictArrayList.add(e104);
-    }
 
     public ArrayList<Addict> getAddictArrayList() {
         return mAddictArrayList;

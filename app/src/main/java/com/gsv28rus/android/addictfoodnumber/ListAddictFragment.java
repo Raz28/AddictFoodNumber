@@ -34,8 +34,8 @@ public class ListAddictFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addictList = new AddictList();
-        mAddictList = addictList.getAddictArrayList();
+        addictList = AddictList.getAddictList();
+        mAddictList = AddictList.getAddictList().getAddictArrayList();
 
         mDatabaseHelper = new DatabaseHelper(getContext());
 

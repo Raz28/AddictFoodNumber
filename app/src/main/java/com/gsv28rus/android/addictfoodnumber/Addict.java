@@ -1,7 +1,6 @@
 package com.gsv28rus.android.addictfoodnumber;
 
 
-
 public class Addict {
 
     private int mId;                // id addict

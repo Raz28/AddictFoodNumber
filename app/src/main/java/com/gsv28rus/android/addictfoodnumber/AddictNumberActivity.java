@@ -1,6 +1,5 @@
 package com.gsv28rus.android.addictfoodnumber;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,14 +10,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.gsv28rus.android.addictfoodnumber.database.DatabaseHelper;
-
-import java.util.ArrayList;
-import java.util.zip.Inflater;
-
 public class AddictNumberActivity extends AppCompatActivity {
 
-       @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addict_number_list);

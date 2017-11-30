@@ -8,12 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-/**
- * Created by Stepan on 27.11.2017.
- */
-
 public class DeclarationAddictFragment extends Fragment {
 
     private AddictList addictList;
@@ -27,7 +21,7 @@ public class DeclarationAddictFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addictList = new AddictList();
+        addictList = AddictList.getAddictList();
     }
 
     @Nullable
