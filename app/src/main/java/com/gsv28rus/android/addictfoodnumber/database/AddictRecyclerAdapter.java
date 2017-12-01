@@ -7,16 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gsv28rus.android.addictfoodnumber.AddictDeclarationActivity;
 import com.gsv28rus.android.addictfoodnumber.CursorRecyclerAdapter;
-import com.gsv28rus.android.addictfoodnumber.ListAddictFragment;
 import com.gsv28rus.android.addictfoodnumber.R;
 
-
-
 public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
+
+    private final static String SELECT_ADDICT_POSITION = "position selected";
 
     public AddictRecyclerAdapter(Cursor cursor) {
         super(cursor);
@@ -25,27 +23,18 @@ public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
     @Override
     public void onBindViewHolderCursor(final RecyclerView.ViewHolder holder, final Cursor cursor) {
         if (holder instanceof ViewHolderAddict) {
-            ViewHolderAddict viewHolderAddict = (ViewHolderAddict) holder;
+            final ViewHolderAddict viewHolderAddict = (ViewHolderAddict) holder;
             viewHolderAddict.mTextViewName.setText(cursor.getString(2));
             viewHolderAddict.mTextViewNumber.setText(cursor.getString(1));
-
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(holder.itemView.getContext(),cursor.getString(1), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(holder.itemView.getContext(), AddictDeclarationActivity.class);
-                    holder.itemView.getContext().startActivity(intent);
-                }
-            });
+            int selectId = cursor.getInt(0);
+            viewHolderAddict.setAddictHolderPosition(selectId);
         }
-
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_addict, parent, false);
         ViewHolderAddict viewHolderAddict = new ViewHolderAddict(view);
-
         return viewHolderAddict;
     }
 
@@ -53,13 +42,26 @@ public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
 
         TextView mTextViewNumber;
         TextView mTextViewName;
+        private int addictHolderPosition;
 
-        public ViewHolderAddict(View itemView) {
+
+        ViewHolderAddict(final View itemView) {
             super(itemView);
             mTextViewNumber = itemView.findViewById(R.id.textViewName);
             mTextViewName = itemView.findViewById(R.id.textViewDeclaratiom);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(itemView.getContext(), AddictDeclarationActivity.class);
+                    intent.putExtra(SELECT_ADDICT_POSITION, addictHolderPosition);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
 
+        void setAddictHolderPosition(int id) {
+            addictHolderPosition = id;
+        }
 
     }
 }
