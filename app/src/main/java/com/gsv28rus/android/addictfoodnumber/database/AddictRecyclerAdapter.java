@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.gsv28rus.android.addictfoodnumber.AddictDeclarationActivity;
-import com.gsv28rus.android.addictfoodnumber.CursorRecyclerAdapter;
 import com.gsv28rus.android.addictfoodnumber.R;
 
 public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
@@ -34,8 +33,7 @@ public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_addict, parent, false);
-        ViewHolderAddict viewHolderAddict = new ViewHolderAddict(view);
-        return viewHolderAddict;
+        return new ViewHolderAddict(view);
     }
 
     public class ViewHolderAddict extends RecyclerView.ViewHolder {

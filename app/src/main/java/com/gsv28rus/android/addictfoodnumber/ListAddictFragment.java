@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.gsv28rus.android.addictfoodnumber.database.AddictRecyclerAdapter;
 import com.gsv28rus.android.addictfoodnumber.database.DatabaseHelper;
+import com.gsv28rus.android.addictfoodnumber.database.SafeFoodDbSchema;
 
 import java.io.IOException;
 
@@ -31,21 +32,16 @@ public class ListAddictFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDatabaseHelper = new DatabaseHelper(getContext());
-
         try {
             mDatabaseHelper.updateDataBase();
         } catch (IOException e) {
             throw new Error("UnableToUpdateDatabase");
         }
 
-        mDatabase = mDatabaseHelper.getWritableDatabase();
-        mCursor = mDatabase.rawQuery("SELECT * FROM numbers", null);
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            Toast.makeText(getContext(), cursor.getString(1), Toast.LENGTH_SHORT).show();
-//            cursor.moveToNext();
-//        }
-//        cursor.close();
+        mDatabase = mDatabaseHelper.getReadableDatabase();
+
+        String[] columns = {SafeFoodDbSchema.NumbersTable.Cols.ID, SafeFoodDbSchema.NumbersTable.Cols.NUMBER, SafeFoodDbSchema.NumbersTable.Cols.NAME};
+        mCursor = mDatabase.query(SafeFoodDbSchema.NumbersTable.NAME, columns, null, null, null, null, null);
     }
 
     @Nullable

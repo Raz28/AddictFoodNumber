@@ -1,4 +1,4 @@
-package com.gsv28rus.android.addictfoodnumber;/*
+package com.gsv28rus.android.addictfoodnumber.database;/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2014 Matthieu Harlé
@@ -47,7 +47,6 @@ import android.widget.Filterable;
  * @see RecyclerView.Adapter
  * @see android.widget.CursorAdapter
  * @see Filterable
- * @see fr.shywim.tools.adapter.CursorFilter.CursorFilterClient
  */
 public abstract class CursorRecyclerAdapter<VH
 		extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH>
