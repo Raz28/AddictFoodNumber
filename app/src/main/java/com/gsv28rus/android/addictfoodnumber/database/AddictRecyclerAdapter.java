@@ -24,7 +24,7 @@ public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
         if (holder instanceof ViewHolderAddict) {
             final ViewHolderAddict viewHolderAddict = (ViewHolderAddict) holder;
             viewHolderAddict.mTextViewName.setText(cursor.getString(2));
-            viewHolderAddict.mTextViewNumber.setText(cursor.getString(1));
+            viewHolderAddict.mTextViewNumber.setText("E" + cursor.getString(1));
             int selectId = cursor.getInt(0);
             viewHolderAddict.setAddictHolderPosition(selectId);
         }
@@ -45,8 +45,8 @@ public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
 
         ViewHolderAddict(final View itemView) {
             super(itemView);
-            mTextViewNumber = itemView.findViewById(R.id.textViewName);
-            mTextViewName = itemView.findViewById(R.id.textViewDeclaratiom);
+            mTextViewNumber = itemView.findViewById(R.id.textViewNumber);
+            mTextViewName = itemView.findViewById(R.id.textViewName);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
