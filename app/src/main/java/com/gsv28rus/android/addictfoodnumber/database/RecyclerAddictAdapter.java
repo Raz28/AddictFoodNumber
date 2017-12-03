@@ -8,14 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.gsv28rus.android.addictfoodnumber.AddictDeclarationActivity;
+import com.gsv28rus.android.addictfoodnumber.DeclarationAddictActivity;
 import com.gsv28rus.android.addictfoodnumber.R;
 
-public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
+public class RecyclerAddictAdapter extends CursorRecyclerAdapter {
 
     private final static String SELECT_ADDICT_POSITION = "position selected";
 
-    public AddictRecyclerAdapter(Cursor cursor) {
+    public RecyclerAddictAdapter(Cursor cursor) {
         super(cursor);
     }
 
@@ -23,9 +23,9 @@ public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
     public void onBindViewHolderCursor(final RecyclerView.ViewHolder holder, final Cursor cursor) {
         if (holder instanceof ViewHolderAddict) {
             final ViewHolderAddict viewHolderAddict = (ViewHolderAddict) holder;
-            viewHolderAddict.mTextViewName.setText(cursor.getString(2));
-            viewHolderAddict.mTextViewNumber.setText("E" + cursor.getString(1));
-            int selectId = cursor.getInt(0);
+            viewHolderAddict.mTextViewName.setText(cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NAME)));
+            viewHolderAddict.mTextViewNumber.setText("E" + cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NUMBER)));
+            int selectId = cursor.getInt(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.ID));
             viewHolderAddict.setAddictHolderPosition(selectId);
         }
     }
@@ -50,7 +50,7 @@ public class AddictRecyclerAdapter extends CursorRecyclerAdapter {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(itemView.getContext(), AddictDeclarationActivity.class);
+                    Intent intent = new Intent(itemView.getContext(), DeclarationAddictActivity.class);
                     intent.putExtra(SELECT_ADDICT_POSITION, addictHolderPosition);
                     itemView.getContext().startActivity(intent);
                 }

@@ -6,6 +6,6 @@
     android:id="@+id/fragment_container_declaration"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gsv28rus.android.addictfoodnumber.AddictDeclarationActivity">
+    tools:context="com.gsv28rus.android.addictfoodnumber.DeclarationAddictActivity">
 
 </FrameLayout>

@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gsv28rus.android.addictfoodnumber.database.AddictRecyclerAdapter;
+import com.gsv28rus.android.addictfoodnumber.database.RecyclerAddictAdapter;
 import com.gsv28rus.android.addictfoodnumber.database.DatabaseHelper;
 import com.gsv28rus.android.addictfoodnumber.database.SafeFoodDbSchema;
 
@@ -51,7 +51,7 @@ public class ListAddictFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recycler_addict_list);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(new AddictRecyclerAdapter(mCursor));
+        mRecyclerView.setAdapter(new RecyclerAddictAdapter(mCursor));
         return view;
     }
 }
