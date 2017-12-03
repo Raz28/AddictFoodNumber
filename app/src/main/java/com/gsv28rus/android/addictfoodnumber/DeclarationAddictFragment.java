@@ -37,7 +37,7 @@ public class DeclarationAddictFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_addict_declaration, container, false);
-        int pozition = getActivity().getIntent().getIntExtra(ListAddictFragment.SELECT_ADDICT_POSITION, 99);
+        int pozition = getActivity().getIntent().getIntExtra(ListAddictFragment.SELECT_ADDICT_POSITION, 0);
         String[] selectionArg = {String.valueOf(pozition)};
 
         mDatabaseHelper = new DatabaseHelper(getContext());
