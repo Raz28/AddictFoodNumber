@@ -53,13 +53,12 @@ public class ListAddictFragment extends Fragment {
         mDatabase = mDatabaseHelper.getReadableDatabase();
         String[] columns = {SafeFoodDbSchema.NumbersTable.Cols.ID, SafeFoodDbSchema.NumbersTable.Cols.NUMBER, SafeFoodDbSchema.NumbersTable.Cols.NAME};
 
-        if (getArguments() != null) mGetExtraSearch = getArguments().getString(ListAddictActivity.ARG_SEARCH_STRING);
+        if (getArguments() != null)
+            mGetExtraSearch = getArguments().getString(ListAddictActivity.ARG_SEARCH_STRING);
 
         if (mGetExtraSearch != null && mGetExtraSearch.length() != 0) {
             mCursor = mDatabase.rawQuery("select * from " + SafeFoodDbSchema.NumbersTable.NAME + " where " + SafeFoodDbSchema.NumbersTable.Cols.NUMBER + " like ?" + " OR " + SafeFoodDbSchema.NumbersTable.Cols.NAME + " like ?", new String[]{"%" + mGetExtraSearch + "%", "%" + mGetExtraSearch + "%"});
-  //          mCursor = mDatabase.query(SafeFoodDbSchema.NumbersTable.NAME, columns, SafeFoodDbSchema.NumbersTable.Cols.NUMBER  + " = ?", new String[]{ mGetExtraSearch}, null, null, null);
-        }
-        else {
+        } else {
             mCursor = mDatabase.query(SafeFoodDbSchema.NumbersTable.NAME, columns, null, null, null, null, null);
         }
         mRecyclerView.setAdapter(new RecyclerAddictAdapter(mCursor));

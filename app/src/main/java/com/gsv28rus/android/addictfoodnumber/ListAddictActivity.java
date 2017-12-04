@@ -12,8 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 public class ListAddictActivity extends AppCompatActivity {
@@ -42,15 +40,6 @@ public class ListAddictActivity extends AppCompatActivity {
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-
-
-
-
-//        searchView.setIconifiedByDefault(false);
-//        searchView.setFocusable(true);
-//        searchView.setIconified(false);
-//        searchView.requestFocusFromTouch();
-
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

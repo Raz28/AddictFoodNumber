@@ -24,7 +24,7 @@ public class RecyclerAddictAdapter extends CursorRecyclerAdapter {
         if (holder instanceof ViewHolderAddict) {
             final ViewHolderAddict viewHolderAddict = (ViewHolderAddict) holder;
             viewHolderAddict.mTextViewName.setText(cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NAME)));
-            viewHolderAddict.mTextViewNumber.setText("E" + cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NUMBER)));
+            viewHolderAddict.mTextViewNumber.setText(cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NUMBER)));
             int selectId = cursor.getInt(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.ID));
             viewHolderAddict.setAddictHolderPosition(selectId);
         }
