@@ -12,9 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 public class ListAddictActivity extends AppCompatActivity {
+
+    public static final String ARG_SEARCH_STRING = "com.gsv28rus.android.addictfoodnumber.ListAddict.Activity.Search";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +42,43 @@ public class ListAddictActivity extends AppCompatActivity {
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+
+
+
+
+//        searchView.setIconifiedByDefault(false);
+//        searchView.setFocusable(true);
+//        searchView.setIconified(false);
+//        searchView.requestFocusFromTouch();
+
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(ListAddictActivity.this, query, Toast.LENGTH_SHORT).show();
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Toast.makeText(ListAddictActivity.this, newText, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ListAddictActivity.this, newText, Toast.LENGTH_SHORT).show();
+                if (newText != null) {
+                    Bundle args = new Bundle();
+                    args.putString(ARG_SEARCH_STRING, newText);
+                    Fragment fragment = new ListAddictFragment();
+                    fragment.setArguments(args);
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, fragment).commit();
+                }
                 return false;
             }
+
         });
+
         return true;
+
     }
 
     @Override
@@ -62,4 +89,5 @@ public class ListAddictActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

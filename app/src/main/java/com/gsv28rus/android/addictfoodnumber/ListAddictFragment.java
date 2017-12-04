@@ -7,9 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.gsv28rus.android.addictfoodnumber.database.RecyclerAddictAdapter;
 import com.gsv28rus.android.addictfoodnumber.database.DatabaseHelper;
@@ -21,6 +23,7 @@ public class ListAddictFragment extends Fragment {
 
     public final static String SELECT_ADDICT_POSITION = "position selected";
 
+    String mGetExtraSearch;
     RecyclerView mRecyclerView;
 
     Cursor mCursor;
@@ -31,17 +34,6 @@ public class ListAddictFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDatabaseHelper = new DatabaseHelper(getContext());
-        try {
-            mDatabaseHelper.updateDataBase();
-        } catch (IOException e) {
-            throw new Error("UnableToUpdateDatabase");
-        }
-
-        mDatabase = mDatabaseHelper.getReadableDatabase();
-
-        String[] columns = {SafeFoodDbSchema.NumbersTable.Cols.ID, SafeFoodDbSchema.NumbersTable.Cols.NUMBER, SafeFoodDbSchema.NumbersTable.Cols.NAME};
-        mCursor = mDatabase.query(SafeFoodDbSchema.NumbersTable.NAME, columns, null, null, null, null, null);
     }
 
     @Nullable
@@ -51,6 +43,25 @@ public class ListAddictFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.recycler_addict_list);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mDatabaseHelper = new DatabaseHelper(getContext());
+        try {
+            mDatabaseHelper.updateDataBase();
+        } catch (IOException e) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+        mDatabase = mDatabaseHelper.getReadableDatabase();
+        String[] columns = {SafeFoodDbSchema.NumbersTable.Cols.ID, SafeFoodDbSchema.NumbersTable.Cols.NUMBER, SafeFoodDbSchema.NumbersTable.Cols.NAME};
+
+        if (getArguments() != null) mGetExtraSearch = getArguments().getString(ListAddictActivity.ARG_SEARCH_STRING);
+
+        if (mGetExtraSearch != null && mGetExtraSearch.length() != 0) {
+            mCursor = mDatabase.rawQuery("select * from " + SafeFoodDbSchema.NumbersTable.NAME + " where " + SafeFoodDbSchema.NumbersTable.Cols.NUMBER + " like ?" + " OR " + SafeFoodDbSchema.NumbersTable.Cols.NAME + " like ?", new String[]{"%" + mGetExtraSearch + "%", "%" + mGetExtraSearch + "%"});
+  //          mCursor = mDatabase.query(SafeFoodDbSchema.NumbersTable.NAME, columns, SafeFoodDbSchema.NumbersTable.Cols.NUMBER  + " = ?", new String[]{ mGetExtraSearch}, null, null, null);
+        }
+        else {
+            mCursor = mDatabase.query(SafeFoodDbSchema.NumbersTable.NAME, columns, null, null, null, null, null);
+        }
         mRecyclerView.setAdapter(new RecyclerAddictAdapter(mCursor));
         return view;
     }
