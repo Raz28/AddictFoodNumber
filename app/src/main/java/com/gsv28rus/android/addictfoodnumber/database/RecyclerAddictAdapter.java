@@ -21,13 +21,27 @@ public class RecyclerAddictAdapter extends CursorRecyclerAdapter {
 
     @Override
     public void onBindViewHolderCursor(final RecyclerView.ViewHolder holder, final Cursor cursor) {
-        if (holder instanceof ViewHolderAddict) {
-            final ViewHolderAddict viewHolderAddict = (ViewHolderAddict) holder;
-            viewHolderAddict.mTextViewName.setText(cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NAME)));
-            viewHolderAddict.mTextViewNumber.setText(cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NUMBER)));
-            int selectId = cursor.getInt(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.ID));
-            viewHolderAddict.setAddictHolderPosition(selectId);
+        final ViewHolderAddict viewHolderAddict = (ViewHolderAddict) holder;
+        viewHolderAddict.mTextViewName.setText(cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NAME)));
+        viewHolderAddict.mTextViewNumber.setText(cursor.getString(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.NUMBER)));
+        int selectId = cursor.getInt(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.ID));
+        int danger = cursor.getInt(cursor.getColumnIndex(SafeFoodDbSchema.NumbersTable.Cols.DANGER));
+
+        switch (danger) {
+            case 1:
+                viewHolderAddict.mTextViewNumber.setBackgroundResource(R.drawable.rectangle_rounded_green);
+                break;
+            case 2:
+                viewHolderAddict.mTextViewNumber.setBackgroundResource(R.drawable.rectangle_rounded_yelllow);
+                break;
+            case 3:
+                viewHolderAddict.mTextViewNumber.setBackgroundResource(R.drawable.rectangle_rounded_orange);
+                break;
+            case 4:
+                viewHolderAddict.mTextViewNumber.setBackgroundResource(R.drawable.rectangle_rounded_red);
+                break;
         }
+        viewHolderAddict.setBinder(selectId);
     }
 
     @Override
@@ -47,6 +61,7 @@ public class RecyclerAddictAdapter extends CursorRecyclerAdapter {
             super(itemView);
             mTextViewNumber = itemView.findViewById(R.id.textViewNumber);
             mTextViewName = itemView.findViewById(R.id.textViewName);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -57,7 +72,7 @@ public class RecyclerAddictAdapter extends CursorRecyclerAdapter {
             });
         }
 
-        void setAddictHolderPosition(int id) {
+        void setBinder(int id) {
             addictHolderPosition = id;
         }
 

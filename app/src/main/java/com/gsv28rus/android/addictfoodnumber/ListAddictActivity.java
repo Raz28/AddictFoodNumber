@@ -1,7 +1,5 @@
 package com.gsv28rus.android.addictfoodnumber;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -22,7 +20,7 @@ public class ListAddictActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addict_number_list);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -38,7 +36,6 @@ public class ListAddictActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
 
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -51,7 +48,6 @@ public class ListAddictActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                //Toast.makeText(ListAddictActivity.this, newText, Toast.LENGTH_SHORT).show();
                 if (newText != null) {
                     Bundle args = new Bundle();
                     args.putString(ARG_SEARCH_STRING, newText);

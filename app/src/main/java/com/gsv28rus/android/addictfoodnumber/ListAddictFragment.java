@@ -50,18 +50,31 @@ public class ListAddictFragment extends Fragment {
         } catch (IOException e) {
             throw new Error("UnableToUpdateDatabase");
         }
-        mDatabase = mDatabaseHelper.getReadableDatabase();
-        String[] columns = {SafeFoodDbSchema.NumbersTable.Cols.ID, SafeFoodDbSchema.NumbersTable.Cols.NUMBER, SafeFoodDbSchema.NumbersTable.Cols.NAME};
 
-        if (getArguments() != null)
-            mGetExtraSearch = getArguments().getString(ListAddictActivity.ARG_SEARCH_STRING);
+        return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mCursor.close();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mDatabase = mDatabaseHelper.getReadableDatabase();
+
+        if (getArguments() != null) mGetExtraSearch = getArguments().getString(ListAddictActivity.ARG_SEARCH_STRING);
 
         if (mGetExtraSearch != null && mGetExtraSearch.length() != 0) {
-            mCursor = mDatabase.rawQuery("select * from " + SafeFoodDbSchema.NumbersTable.NAME + " where " + SafeFoodDbSchema.NumbersTable.Cols.NUMBER + " like ?" + " OR " + SafeFoodDbSchema.NumbersTable.Cols.NAME + " like ?", new String[]{"%" + mGetExtraSearch + "%", "%" + mGetExtraSearch + "%"});
+            mCursor = mDatabase.rawQuery("select * from " + SafeFoodDbSchema.NumbersTable.NAME + " where " + SafeFoodDbSchema.NumbersTable.Cols.NUMBER + " like ?"
+                    + " OR " + SafeFoodDbSchema.NumbersTable.Cols.NAME + " like ?", new String[]{"%" + mGetExtraSearch + "%", "%" + mGetExtraSearch + "%"});
         } else {
-            mCursor = mDatabase.query(SafeFoodDbSchema.NumbersTable.NAME, columns, null, null, null, null, null);
+            mCursor = mDatabase.query(SafeFoodDbSchema.NumbersTable.NAME, null, null, null, null, null, null);
         }
-        mRecyclerView.setAdapter(new RecyclerAddictAdapter(mCursor));
-        return view;
+        RecyclerAddictAdapter addictAdapter = new RecyclerAddictAdapter(mCursor);
+        mRecyclerView.setAdapter(addictAdapter);
+
     }
 }
