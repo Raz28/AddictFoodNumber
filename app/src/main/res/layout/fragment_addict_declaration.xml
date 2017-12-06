@@ -46,7 +46,7 @@
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Общая информация"
+                    android:text="@string/addict_declaration_general"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -81,8 +81,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Польза"
-
+                    android:text="@string/addict_declaration_benefit"
                     android:textStyle="bold"/>
 
                 <TextView
@@ -117,7 +116,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Вред"
+                    android:text="@string/addict_declaration_harm"
 
                     android:textStyle="bold"/>
 

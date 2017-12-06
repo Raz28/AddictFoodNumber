@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AddictFoodNumber</string>
+    <string name="dialog_about_title">О программе</string>
+    <string name="dialog_about_message">По всем вопросам писать на gsv28rus@gmail.com</string>
+    <string name="dialog_positive_buuton">ОК</string>
+    <string name="menu_search">Поиск</string>
+    <string name="menu_about">О программе</string>
+    <string name="addict_declaration_benefit">Польза</string>
+    <string name="addict_declaration_general">Общая информация</string>
+    <string name="addict_declaration_harm">Вред</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.gsv28rus.android.addictfoodnumber;
 
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.gsv28rus.android.addictfoodnumber.database.NoticeDialogFragment;
 
 public class ListAddictActivity extends AppCompatActivity {
 
@@ -37,12 +40,12 @@ public class ListAddictActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main_menu, menu);
 
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setQueryHint(getResources().getString(R.string.menu_search));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Toast.makeText(ListAddictActivity.this, query, Toast.LENGTH_SHORT).show();
-
                 return false;
             }
 
@@ -70,7 +73,10 @@ public class ListAddictActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_1:
-                Toast.makeText(this, "Item #1 selected", Toast.LENGTH_SHORT).show();
+                NoticeDialogFragment noticeDialogFragment = new NoticeDialogFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                noticeDialogFragment.show(fragmentManager, "TAG");
+
         }
         return super.onOptionsItemSelected(item);
     }
