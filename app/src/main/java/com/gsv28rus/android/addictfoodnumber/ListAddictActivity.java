@@ -1,6 +1,5 @@
 package com.gsv28rus.android.addictfoodnumber;
 
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,8 +11,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-import com.gsv28rus.android.addictfoodnumber.database.NoticeDialogFragment;
 
 public class ListAddictActivity extends AppCompatActivity {
 

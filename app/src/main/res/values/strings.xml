@@ -8,4 +8,7 @@
     <string name="addict_declaration_benefit">Польза</string>
     <string name="addict_declaration_general">Общая информация</string>
     <string name="addict_declaration_harm">Вред</string>
+    <string name="addict_declaration_using">Использование</string>
+    <string name="addict_declaration_law">Законодательство</string>
+    <string name="menu_open">Открыть</string>
 </resources>

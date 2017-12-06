@@ -1,4 +1,4 @@
-package com.gsv28rus.android.addictfoodnumber.database;
+package com.gsv28rus.android.addictfoodnumber;
 
 import android.app.Dialog;
 import android.app.DialogFragment;

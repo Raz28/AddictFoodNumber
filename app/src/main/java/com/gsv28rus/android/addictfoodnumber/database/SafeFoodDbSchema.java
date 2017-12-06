@@ -14,8 +14,11 @@ public class SafeFoodDbSchema {
             public static final String GENERAL = "general";
             public static final String BENEFIT = "benefit";
             public static final String HARM = "harm";
+            public static final String USING = "using";
+            public static final String LAW = "law";
             public static final String DANGER = "danger";
             public static final String GROUP = "group";
+            public static final String FAVORITE = "favorite";
         }
     }
 }
